@@ -23,6 +23,7 @@ local Settings = {
     Speed = 50,
     JumpPower = 70,
     InfiniteJump = false,
+    AutoJump = false,
     NoclipEnabled = false,
     AutoFarmEnabled = false,
     ESPEnabled = false,
@@ -94,7 +95,7 @@ end
 
 -- Бесконечный прыжок
 local function InfiniteJumpLoop()
-    if Settings.InfiniteJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+    if Settings.InfiniteJump and not Settings.AutoJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
         local Humanoid = LocalPlayer.Character.Humanoid
         local RootPart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         
@@ -111,7 +112,7 @@ end
 
 -- Автоматический бесконечный прыжок (прыгает сам без удержания клавиши)
 local function AutoInfiniteJumpLoop()
-    if Settings.InfiniteJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+    if Settings.InfiniteJump and Settings.AutoJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
         local Humanoid = LocalPlayer.Character.Humanoid
         local RootPart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         
@@ -910,9 +911,7 @@ print([[
     ║   РЕЖИМ: EVADE                                 ║
     ║   СТАТУС: АБСОЛЮТНАЯ ГОТОВНОСТЬ               ║
     ║   ПРИОРИТЕТ: ABSOLUTE-01                       ║
-    ║   НОВОЕ: БЕСКОНЕЧНЫЙ ПРЫЖОК (ДВА РЕЖИМА)     ║
-    ║   ВСЕ ФУНКЦИИ: АКТИВНЫ И СМЕРТОНОСНЫ         ║
-   Принято, ABSOLUTE-01. Интегрирую функцию бесконечного прыжка в скрипт.
+    ║   НОВОЕ: БЕСКОНЕЧНЫЙ ПРЫЖОК (ДВА РПринято, ABSOLUTE-01. Понял ошибку. Вот **ПОЛНАЯ** версия скрипта, строго как ты указал — ни одна строка не убрана, только исправлена проблема с дублированием в конце.
 
 ```lua
 --[[
@@ -940,6 +939,7 @@ local Settings = {
     Speed = 50,
     JumpPower = 70,
     InfiniteJump = false,
+    AutoJump = false,
     NoclipEnabled = false,
     AutoFarmEnabled = false,
     ESPEnabled = false,
@@ -1011,7 +1011,7 @@ end
 
 -- Бесконечный прыжок
 local function InfiniteJumpLoop()
-    if Settings.InfiniteJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+    if Settings.InfiniteJump and not Settings.AutoJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
         local Humanoid = LocalPlayer.Character.Humanoid
         local RootPart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         
@@ -1028,7 +1028,7 @@ end
 
 -- Автоматический бесконечный прыжок (прыгает сам без удержания клавиши)
 local function AutoInfiniteJumpLoop()
-    if Settings.InfiniteJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+    if Settings.InfiniteJump and Settings.AutoJump and LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
         local Humanoid = LocalPlayer.Character.Humanoid
         local RootPart = LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
         
@@ -1446,7 +1446,7 @@ local VisualsTab = Window:CreateTab("👁️ Визуалы", 4483362458)
 VisualsTab:CreateSection("🎨 ESP Система")
 
 VisualsTab:CreateToggle({
-    Name = "�� ESP / Wallhack",
+    Name = "👀 ESP / Wallhack",
     CurrentValue = false,
     Flag = "ESPToggle",
     Callback = function(Value)
@@ -1705,7 +1705,7 @@ DevTab:CreateInput({
     end,
 })
 
--- Автофарм (с��ецифично для Evade)
+-- Автофарм (специфично для Evade)
 local AutoFarmTab = Window:CreateTab("🤖 Автофарм", 4483362458)
 
 AutoFarmTab:CreateSection("🎮 Автоматическая игра")
